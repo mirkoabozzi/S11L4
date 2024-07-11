@@ -35,7 +35,7 @@ const Home = () => {
         ) : (
           <Row>
             {articles.map((article) => (
-              <Col className="my-2" key={article.id} sm={4}>
+              <Col xs="12" md="6" lg="4" className="my-2" key={article.id}>
                 <SingleArticle key={article.id} article={article} />
               </Col>
             ))}

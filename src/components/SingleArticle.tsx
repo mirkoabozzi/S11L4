@@ -15,7 +15,7 @@ const SingleArticle = ({ article }: SingleArticleProps) => {
         <Card.Img variant="top" src={article.image_url} />
         <Card.Body>
           <Card.Title>{article.title}</Card.Title>
-          <Card.Text>{article.summary}</Card.Text>
+          <Card.Text className="line-truncate-3">{article.summary}</Card.Text>
           <Button onClick={() => navigate("/details/" + article.id)} variant="primary">
             See more
           </Button>
