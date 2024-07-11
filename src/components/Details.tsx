@@ -34,7 +34,7 @@ const Details = () => {
   }, []);
 
   return (
-    <Container fluid className="mt-3">
+    <Container className="mt-3">
       {isLoading ? (
         <Spinner animation="grow" />
       ) : (
