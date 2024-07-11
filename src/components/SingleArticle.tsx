@@ -17,7 +17,7 @@ const SingleArticle = ({ article }: SingleArticleProps) => {
           <Card.Title>{article.title}</Card.Title>
           <Card.Text>{article.summary}</Card.Text>
           <Button onClick={() => navigate("/details/" + article.id)} variant="primary">
-            Go somewhere
+            See more
           </Button>
         </Card.Body>
       </Card>

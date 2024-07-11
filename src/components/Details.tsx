@@ -5,8 +5,12 @@ import { IArticle } from "../assets/interfaces/IArticle";
 
 const Details = () => {
   const params = useParams();
-  const [article, setArticle] = useState<IArticle>();
+  const [article, setArticle] = useState<IArticle | null>(null);
 
+  const dataConverter = (dataStr: Date) => {
+    const data = new Date(dataStr);
+    return data.toLocaleString();
+  };
   const fetchArticle = async () => {
     try {
       const resp = await fetch("https://api.spaceflightnewsapi.net/v4/articles/" + params.id);
@@ -27,16 +31,24 @@ const Details = () => {
   }, []);
 
   return (
-    <Container>
+    <Container fluid>
       <Row>
-        <h1>Pagina dettaglio</h1>
-        <Col>
-          <h2>{article?.title}</h2>
-          <Image src={article?.image_url} alt="Article Image" />
-        </Col>
-        <Col>
-          <p>{article?.summary}</p>
-        </Col>
+        <h1>Dettagli</h1>
+        {article && (
+          <>
+            <Col xs={4}>
+              <Image src={article.image_url} alt="Article Image" className="w-100" />
+            </Col>
+            <Col xs={8}>
+              <h2>{article.title}</h2>
+              <p>From: {article.news_site}</p>
+              <p>{article.summary}</p>
+              <a href={article.url}> Read More</a>
+              <p>Pubblicato il: {dataConverter(article.published_at)}</p>
+              <p>Ultimo aggiornamento: {dataConverter(article.updated_at)}</p>
+            </Col>
+          </>
+        )}
       </Row>
     </Container>
   );
