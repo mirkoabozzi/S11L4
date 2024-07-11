@@ -35,11 +35,11 @@ const Details = () => {
 
   return (
     <Container className="mt-3">
+      <h1>Dettagli</h1>
       {isLoading ? (
         <Spinner animation="grow" />
       ) : (
         <Row>
-          <h1>Dettagli</h1>
           {article && (
             <>
               <Col xs={4}>
