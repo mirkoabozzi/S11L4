@@ -1,14 +1,24 @@
 import { Button, Card, Col } from "react-bootstrap";
+import { IArticle } from "../assets/interfaces/IArticle";
+import { useNavigate } from "react-router-dom";
 
-const SingleArticle = () => {
+interface SingleArticleProps {
+  article: IArticle;
+}
+
+const SingleArticle = ({ article }: SingleArticleProps) => {
+  const navigate = useNavigate();
+
   return (
     <Col>
       <Card>
-        <Card.Img variant="top" src="holder.js/100px180" />
+        <Card.Img variant="top" src={article.image_url} />
         <Card.Body>
-          <Card.Title>Card Title</Card.Title>
-          <Card.Text>Some quick example text to build on the card title and make up the bulk of the card's content.</Card.Text>
-          <Button variant="primary">Go somewhere</Button>
+          <Card.Title>{article.title}</Card.Title>
+          <Card.Text>{article.summary}</Card.Text>
+          <Button onClick={() => navigate("/details/" + article.id)} variant="primary">
+            Go somewhere
+          </Button>
         </Card.Body>
       </Card>
     </Col>
