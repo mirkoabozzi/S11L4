@@ -1,10 +1,11 @@
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row, Spinner } from "react-bootstrap";
 import SingleArticle from "./SingleArticle";
 import { useEffect, useState } from "react";
 import { IArticle } from "../assets/interfaces/IArticle";
 
 const Home = () => {
   const [articles, setArticles] = useState<IArticle[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchArticle = async () => {
     try {
@@ -12,6 +13,7 @@ const Home = () => {
       if (resp.ok) {
         const artilces = await resp.json();
         setArticles(artilces.results);
+        setIsLoading(false);
       } else {
         throw new Error("Errore nel reperimento degli articoli");
       }
@@ -28,13 +30,17 @@ const Home = () => {
     articles && (
       <Container className="mt-3">
         <h1>Articoli Space X</h1>
-        <Row>
-          {articles.map((article) => (
-            <Col className="py-2" key={article.id} sm={3}>
-              <SingleArticle key={article.id} article={article} />
-            </Col>
-          ))}
-        </Row>
+        {isLoading ? (
+          <Spinner animation="grow" />
+        ) : (
+          <Row>
+            {articles.map((article) => (
+              <Col className="my-2" key={article.id} sm={4}>
+                <SingleArticle key={article.id} article={article} />
+              </Col>
+            ))}
+          </Row>
+        )}
       </Container>
     )
   );
