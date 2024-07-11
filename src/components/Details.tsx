@@ -39,23 +39,21 @@ const Details = () => {
       {isLoading ? (
         <Spinner animation="grow" />
       ) : (
-        <Row>
-          {article && (
-            <>
-              <Col xs={4}>
-                <Image src={article.image_url} alt="Article Image" className="w-100" />
-              </Col>
-              <Col xs={8}>
-                <h2>{article.title}</h2>
-                <p>From: {article.news_site}</p>
-                <p>{article.summary}</p>
-                <a href={article.url}> Read More</a>
-                <p>Pubblicato il: {dataConverter(article.published_at)}</p>
-                <p>Ultimo aggiornamento: {dataConverter(article.updated_at)}</p>
-              </Col>
-            </>
-          )}
-        </Row>
+        article && (
+          <Row>
+            <Col xs={4}>
+              <Image src={article.image_url} alt="Article Image" className="w-100" />
+            </Col>
+            <Col xs={8}>
+              <h2>{article.title}</h2>
+              <p>Fonte: {article.news_site}</p>
+              <p>{article.summary}</p>
+              <a href={article.url}> Read More</a>
+              <p>Pubblicato il: {dataConverter(article.published_at)}</p>
+              <p>Ultimo aggiornamento: {dataConverter(article.updated_at)}</p>
+            </Col>
+          </Row>
+        )
       )}
     </Container>
   );
